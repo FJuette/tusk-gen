@@ -8,9 +8,9 @@ namespace tusk_gen
 {
     public class CommandService
     {
-        public string pereparePath(string className)
+        public string pereparePath(string className, string pathName)
         {
-            string pathString = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), className);
+            string pathString = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), pathName);
 
             pathString = System.IO.Path.Combine(pathString, "Commands");
 
@@ -21,7 +21,7 @@ namespace tusk_gen
 
         public void createCommand(string pathString, string className, string nspace)
         {
-            nspace = nspace + "." + className;
+            var nspaceclass = nspace + "." + className;
 
             if (!System.IO.File.Exists(pathString))
             {
@@ -34,14 +34,13 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using $nspace.Models;
-using $nspace.Persistance;
 using FluentValidation;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 
 
 
-namespace $nspace
+namespace $nspaceclass
 {
     public class $classNameCommand : IRequest<bool>
     {

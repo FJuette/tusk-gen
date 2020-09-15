@@ -8,9 +8,9 @@ namespace tusk_gen
 {
     public class QueryService
     {
-        public string pereparePath(string className)
+        public string pereparePath(string className, string pathName)
         {
-            string pathString = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), className);
+            string pathString = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), pathName);
 
             pathString = System.IO.Path.Combine(pathString, "Queries");
 
@@ -21,7 +21,8 @@ namespace tusk_gen
 
         public void createCommand(string pathString, string className, string nspace)
         {
-            nspace = nspace + "." + className;
+            var nspaceclass = nspace + "." + className;
+
 
             if (!System.IO.File.Exists(pathString))
             {
@@ -36,9 +37,8 @@ using MediatR;
 using $nspace.Exceptions;
 using $nspace.Infrastructure;
 using $nspace.Models;
-using $nspace.Persistance;
 
-namespace $nspace
+namespace $nspaceclass
 {
     public class Get$classNameQuery : IRequest<Ref$classNameViewModel>
     {

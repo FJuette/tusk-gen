@@ -26,12 +26,8 @@ namespace tusk_gen
 
                         for (int i = 0; i < split_content.Length; i++)
                         {
-
-                            Console.WriteLine(split_content[i]);
-
                             if(split_content[i].Contains("namespace"))
                             {
-                                Console.WriteLine(split_content[i]);
                                 var index = i + 1;
                                 nspace = split_content[index];
                                 break;
@@ -60,26 +56,26 @@ namespace tusk_gen
                         UnkownCommand();
                     }
                 }
-                else if (args.Length == 2)
+                else if (args.Length == 3)
                 {
-                    if (args[0] == "query" || args[0] == "q" && args[1] != "")
+                    if (args[0] == "query" || args[0] == "q" && args[1] != "" && args[2] != "")
                     {
                         Console.WriteLine("Name of the class: " + args[1]);
 
                         QueryService _queryService = new QueryService();
 
-                        var path = _queryService.pereparePath(args[1]);
+                        var path = _queryService.pereparePath(args[1], args[2]);
 
                         _queryService.createCommand(path, args[1], nspace);
 
                     }
-                    else if (args[0] == "command" || args[0] == "c" && args[1] != "")
+                    else if (args[0] == "command" || args[0] == "c" && args[1] != "" && args[2] != "")
                     {
                         Console.WriteLine("Name of the class: " + args[1]);
 
                         CommandService _commandService = new CommandService();
 
-                        var path = _commandService.pereparePath(args[1]);
+                        var path = _commandService.pereparePath(args[1], args[2]);
 
                         _commandService.createCommand(path, args[1], nspace);
                     }
