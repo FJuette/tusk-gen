@@ -33,11 +33,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
-using MoreLinq;
-using Windranger.Api.Exceptions;
-using Windranger.Api.Infrastructure;
-using Windranger.Api.Models;
-using Windranger.Api.Persistance;
+using $nspace.Exceptions;
+using $nspace.Infrastructure;
+using $nspace.Models;
+using $nspace.Persistance;
 
 namespace $nspace
 {
