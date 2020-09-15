@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Reflection;
 using System.IO;
-using System.CodeDom;
-using System.CodeDom.Compiler;
-using Microsoft.CSharp;
 using System.Text;
 
 namespace tusk_gen
@@ -15,30 +12,7 @@ namespace tusk_gen
 
             if (args.Length != 0)
             {
-                string nspace = "ProjectNamespace";
-
-                try
-                {
-                    using (var sr = new StreamReader("Startup.cs"))
-                    {
-                        var content = sr.ReadToEnd();
-                        var split_content = content.Split(new char[0]);
-
-                        for (int i = 0; i < split_content.Length; i++)
-                        {
-                            if(split_content[i].Contains("namespace"))
-                            {
-                                var index = i + 1;
-                                nspace = split_content[index];
-                                break;
-                            }
-                        }
-                    }
-                }
-                catch (IOException e)
-                {
-                    Console.WriteLine("Cannot get Namespace! Startup.cs not found!");
-                }
+                string nspace = getNamespace();
 
                 if (args.Length == 1)
                 {
@@ -98,6 +72,33 @@ namespace tusk_gen
         static void UnkownCommand()
         {
             Console.WriteLine("Command is not valid! List with all commands: --help");
+        }
+
+        static string getNamespace()
+        {
+            try
+            {
+                using (var sr = new StreamReader("Startup.cs"))
+                {
+                    var content = sr.ReadToEnd();
+                    var split_content = content.Split(new char[0]);
+
+                    for (int i = 0; i < split_content.Length; i++)
+                    {
+                        if (split_content[i].Contains("namespace"))
+                        {
+                            var index = i + 1;
+                            return split_content[index];
+                        }
+                    }
+                }
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("Cannot get Namespace! Startup.cs not found!");
+            }
+
+            return "ProjectNamespace";
         }
 
     }
