@@ -5,7 +5,7 @@ namespace tusk_gen
 {
     public class QueryTemplate
     {
-        public string getQueryTemplate(string nspace, string className)
+        public string getQueryTemplate(string nspace, string className, string nspaceclass)
         {
              return @"using System;
 using System.Collections.Generic;
@@ -19,14 +19,14 @@ using $nspace.Models;
 
 namespace $nspaceclass
 {
-    public class Get$classNameQuery : IRequest<Ref$classNameViewModel>
+    public class $classNameQuery : IRequest<Ref$classNameViewModel>
     {
     }
 
-    public class Get$classNameQueryHandler : IRequestHandler<Get$classNameQuery, Ref$classNameViewModel>
+    public class $classNameQueryHandler : IRequestHandler<$classNameQuery, Ref$classNameViewModel>
     {
 
-        public async Task<Ref$classNameViewModel> Handle(Get$classNameQuery request, CancellationToken cancellationToken)
+        public async Task<Ref$classNameViewModel> Handle($classNameQuery request, CancellationToken cancellationToken)
         {
             return new Ref$classNameViewModel();
         }
@@ -48,7 +48,7 @@ namespace $nspaceclass
     {
         public List<Ref$classNameDto> Data { get; set; }
     }
-}".PHPIt(new {nspace, className});
+}".PHPIt(new {nspaceclass, nspace, className});
         }
     }
 }

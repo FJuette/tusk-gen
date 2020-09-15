@@ -28,7 +28,7 @@ namespace tusk_gen
                 {
                     QueryTemplate _queryTemplate = new QueryTemplate();
 
-                    var data = _queryTemplate.getQueryTemplate(nspace, className);
+                    var data = _queryTemplate.getQueryTemplate(nspace, className, nspaceclass);
 
                     byte[] bytes = Encoding.UTF8.GetBytes(data);
 

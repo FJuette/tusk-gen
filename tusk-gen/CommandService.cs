@@ -27,7 +27,7 @@ namespace tusk_gen
                 {
                     CommandTemplate _commandTemplate = new CommandTemplate();
 
-                    var data = _commandTemplate.getCommandTemplate(nspace, className);
+                    var data = _commandTemplate.getCommandTemplate(nspace, className, nspaceclass);
 
                     byte[] bytes = Encoding.UTF8.GetBytes(data);
 

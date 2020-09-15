@@ -5,7 +5,7 @@ namespace tusk_gen
 {
     public class CommandTemplate
     {
-        public string getCommandTemplate(string nspace, string className)
+        public string getCommandTemplate(string nspace, string className, string nspaceclass)
         {
              return @"using System.Collections.Generic;
 using System.Linq;
@@ -54,7 +54,7 @@ namespace $nspaceclass
     }
 
 
-}".PHPIt(new {nspace, className});
+}".PHPIt(new {nspaceclass, nspace, className});
         }
     }
 }
