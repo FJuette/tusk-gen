@@ -10,6 +10,17 @@ Schritt 1:
 Schritt 2:
 
     dotnet tool install --global --add-source ./nupkg tusk-gen
+    
+## Beispiel
+
+    gen c CreateFahrzeug Fahrzeug
+
+oder
+
+    gen q GetFahrzeug Fahrzeug
+    
 ## Nupkg entfernen
 
     dotnet tool uninstall tusk-gen -g
+    
+ 
