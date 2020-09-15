@@ -26,48 +26,9 @@ namespace tusk_gen
             {
                 using (System.IO.FileStream fs = System.IO.File.Create(pathString))
                 {
-                    var data = @"using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
-using MediatR;
-using $nspace.Exceptions;
-using $nspace.Infrastructure;
-using $nspace.Models;
+                    QueryTemplate _queryTemplate = new QueryTemplate();
 
-namespace $nspaceclass
-{
-    public class Get$classNameQuery : IRequest<Ref$classNameViewModel>
-    {
-    }
-
-    public class Get$classNameQueryHandler : IRequestHandler<Get$classNameQuery, Ref$classNameViewModel>
-    {
-
-        public async Task<Ref$classNameViewModel> Handle(Get$classNameQuery request, CancellationToken cancellationToken)
-        {
-            return new Ref$classNameViewModel();
-        }
-    }
-
-    public class Ref$classNameDto
-    {
-    }
-
-    public class Ref$classNameProfile : Profile
-    {
-        public Ref$classNameProfile()
-        {
-           
-        }
-    }
-
-    public class Ref$classNameViewModel
-    {
-        public List<Ref$classNameDto> Data { get; set; }
-    }
-}".PHPIt(new {nspace, className});
+                    var data = _queryTemplate.getQueryTemplate(nspace, className);
 
                     byte[] bytes = Encoding.UTF8.GetBytes(data);
 
