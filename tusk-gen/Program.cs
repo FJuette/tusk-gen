@@ -12,8 +12,6 @@ namespace tusk_gen
 
             if (args.Length != 0)
             {
-                string nspace = getNamespace();
-
                 if (args.Length == 1)
                 {
                     if (args[0] == "--help" || args[0] == "--h")
@@ -36,22 +34,29 @@ namespace tusk_gen
                     {
                         Console.WriteLine("Name of the class: " + args[1]);
 
-                        QueryService _queryService = new QueryService();
+                        TemplateService _templateService = new TemplateService();
 
-                        var path = _queryService.pereparePath(args[1], args[2]);
+                        _templateService.build(args[1], args[2], "tusk_gen.Templates.Query.template", "Query");
 
-                        _queryService.createCommand(path, args[1], nspace);
+                        //_queryService.pereparePath(args[1], args[2]);
+
+                        //_queryService.createCommand(path, args[1], nspace);
 
                     }
                     else if (args[0] == "command" || args[0] == "c" && args[1] != "" && args[2] != "")
                     {
                         Console.WriteLine("Name of the class: " + args[1]);
 
-                        CommandService _commandService = new CommandService();
+                        /*CommandService _commandService = new CommandService();
 
                         var path = _commandService.pereparePath(args[1], args[2]);
 
                         _commandService.createCommand(path, args[1], nspace);
+                        */
+
+                        TemplateService _templateService = new TemplateService();
+
+                        _templateService.build(args[1], args[2], "tusk_gen.Templates.Command.template", "Command");
                     }
                     else
                     {
@@ -73,34 +78,6 @@ namespace tusk_gen
         {
             Console.WriteLine("Command is not valid! List with all commands: --help");
         }
-
-        static string getNamespace()
-        {
-            try
-            {
-                using (var sr = new StreamReader("Startup.cs"))
-                {
-                    var content = sr.ReadToEnd();
-                    var split_content = content.Split(new char[0]);
-
-                    for (int i = 0; i < split_content.Length; i++)
-                    {
-                        if (split_content[i].Contains("namespace"))
-                        {
-                            var index = i + 1;
-                            return split_content[index];
-                        }
-                    }
-                }
-            }
-            catch (IOException e)
-            {
-                Console.WriteLine("Cannot get Namespace! Startup.cs not found!");
-            }
-
-            return "ProjectNamespace";
-        }
-
     }
 
     static class StringExtensions

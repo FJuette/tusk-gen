@@ -1,0 +1,52 @@
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+using $nspace.Models;
+using FluentValidation;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
+
+
+
+namespace $nspaceclass
+{
+    public class $classNameCommand : IRequest<bool>
+    {
+
+    }
+
+    public class $classNameCommandHandler : IRequestHandler<$classNameCommand, bool>
+    {
+        public $classNameCommandHandler()
+        {
+            
+        }
+
+        public async Task<bool> Handle($classNameCommand request, CancellationToken cancellationToken)
+        {
+        }
+
+    }
+
+     public class $classNameValidator : AbstractValidator<$classNameCommand>
+    {
+        public $classNameValidator()
+        {
+            //RuleFor(x => x.Identity).NotEmpty()
+            //    .WithMessage('Der Id eines neuen Projekts darf nicht leer sein.');
+
+        }
+    }
+
+    public class $classNameProfile : Profile
+    {
+        public $classNameProfile()
+        {
+        }
+    }
+
+
+}

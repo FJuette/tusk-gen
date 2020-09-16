@@ -1,13 +1,4 @@
 using System;
-
-
-namespace tusk_gen
-{
-    public class QueryTemplate
-    {
-        public string getQueryTemplate(string nspace, string className, string nspaceclass)
-        {
-             return @"using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -47,8 +38,5 @@ namespace $nspaceclass
     public class Ref$classNameViewModel
     {
         public List<Ref$classNameDto> Data { get; set; }
-    }
-}".PHPIt(new {nspaceclass, nspace, className});
-        }
     }
 }
